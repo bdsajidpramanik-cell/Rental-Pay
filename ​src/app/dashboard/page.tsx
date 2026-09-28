@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function DashboardPage() {
   const { firebaseUser, currentUser, loading, logout } = useAuth();
@@ -30,8 +31,19 @@ export default function DashboardPage() {
       <nav className="bg-white shadow-sm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 justify-between">
-            <div className="flex items-center">
+            <div className="flex items-center space-x-8">
               <h1 className="text-xl font-bold text-blue-600">Rental Pay</h1>
+              <div className="hidden space-x-4 md:flex">
+                <Link href="/dashboard/properties" className="text-sm font-medium text-gray-700 hover:text-blue-600">
+                  Shops & Properties
+                </Link>
+                <Link href="/dashboard/qr-onboarding" className="text-sm font-medium text-gray-700 hover:text-blue-600">
+                  QR Onboarding
+                </Link>
+                <Link href="/dashboard/payments" className="text-sm font-medium text-gray-700 hover:text-blue-600">
+                  Payments
+                </Link>
+              </div>
             </div>
             <div className="flex items-center gap-4">
               <span className="text-sm font-medium text-gray-700">
@@ -59,22 +71,22 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        {/* Dashboard Cards Grid */}
+        {/* Dashboard Navigation Cards Grid */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="rounded-lg bg-white p-6 shadow-sm">
+          <Link href="/dashboard/properties" className="block rounded-lg bg-white p-6 shadow-sm transition hover:shadow-md">
             <h3 className="text-lg font-semibold text-gray-700">Properties & Shops</h3>
             <p className="mt-2 text-sm text-gray-500">Manage shop allocations, occupancy, and status.</p>
-          </div>
+          </Link>
 
-          <div className="rounded-lg bg-white p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-gray-700">Agreements</h3>
-            <p className="mt-2 text-sm text-gray-500">Track active tenant leases and revision versions.</p>
-          </div>
+          <Link href="/dashboard/qr-onboarding" className="block rounded-lg bg-white p-6 shadow-sm transition hover:shadow-md">
+            <h3 className="text-lg font-semibold text-gray-700">QR Onboarding</h3>
+            <p className="mt-2 text-sm text-gray-500">Generate QR tokens for tenants and claim shop access.</p>
+          </Link>
 
-          <div className="rounded-lg bg-white p-6 shadow-sm">
+          <Link href="/dashboard/payments" className="block rounded-lg bg-white p-6 shadow-sm transition hover:shadow-md">
             <h3 className="text-lg font-semibold text-gray-700">Payments & Bills</h3>
             <p className="mt-2 text-sm text-gray-500">Verify tenant payment proofs and issue receipts.</p>
-          </div>
+          </Link>
         </div>
       </main>
     </div>

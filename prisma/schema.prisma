@@ -348,6 +348,11 @@ model QrOnboardingToken {
   expiresAt     DateTime
   createdById   String    @db.Uuid
   createdAt     DateTime  @default(now())
+
+  // Verification matching fields
+  expectedName  String?
+  expectedPhone String?
+
   property      Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
   shop          Shop      @relation(fields: [shopId], references: [id], onDelete: Cascade)
   createdBy     User      @relation("TokenCreator", fields: [createdById], references: [id], onDelete: Restrict)
